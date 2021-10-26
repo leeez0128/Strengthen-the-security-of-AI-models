@@ -27,12 +27,9 @@ def runProjectedGradientDescent():
     
     attacker = ProjectedGradientDescent(estimator=classifier, targeted=True, eps_step=1, eps=8, max_iter=3)
     y = to_categorical([430],1000) #traget class = basketball
-
-
-
-    print('\n====== RUN with ProjectedGradientDescent======')
+    
+    print('\n>>>>> GENERATING ADVERSARIAL_IMAGE WITH ProjectedGradientDescent')
     adversarial_image = attacker.generate(img, y=y)
-
     print('\n>>>>> NO DEFENSE')
     prediction = classifier.predict(adversarial_image)
     result = decode_predictions(prediction, top=5)
@@ -55,7 +52,6 @@ def runProjectedGradientDescent():
     result = decode_predictions(prediction, top=5)
     for idx, value in enumerate(result[0]) :
         print(f'{idx+1}. {value[1]} with a {value[2]*100 : .5f}%')
-
 
     # Feature Squeezing
     feature_squeezing_adversarial_image, _ = FeatureSqueezing(bit_depth=3, clip_values=(0, 255))(adversarial_image)

@@ -11,8 +11,6 @@ from art.defences.preprocessor import GaussianAugmentation, SpatialSmoothing, Fe
 
 from tensorflow.python.framework.ops import disable_eager_execution
 
-tf.compat.v1.experimental.output_all_intermediates(True)
-
 def runFastGradientMethod():
     disable_eager_execution()
     img = image.load_img('./Siamese_cat.jpeg', target_size=(224, 224))
@@ -26,12 +24,10 @@ def runFastGradientMethod():
     
     # med -> eps = 4
     attacker = FastGradientMethod(estimator=classifier, eps=4)
-
-
-
-    print('\n====== RUN with FastGradientMethod======')
-    adversarial_image = attacker.generate(img)
     
+    print('\n>>>>> GENERATING ADVERSARIAL_IMAGE WITH FastGradientMethod')
+    adversarial_image = attacker.generate(img)
+
     print('\n>>>>> NO DEFENSE')
     prediction = classifier.predict(adversarial_image)
     result = decode_predictions(prediction, top=5)

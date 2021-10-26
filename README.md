@@ -16,6 +16,7 @@ $ pip install pillow
 $ python NoAttack.py  # AI모델에 대해 아무런 공격을 하지 않음
 $ python FastGradientMethod.py  # AI모델에 대해 Fast Gradient Method 공격
 $ python ProjectedGradientDescent # AI모델에 대해 Projected Gradient Descent 공격
+$ python defendFGM,PGDAttackWith3ways.py #AI 모델에 FGM, PGD 공격 및 3가지 방어기법 사용
 ```
 
 ## Results

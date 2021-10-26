@@ -12,7 +12,6 @@ from art.utils import to_categorical
 
 from tensorflow.python.framework.ops import disable_eager_execution
 
-tf.compat.v1.experimental.output_all_intermediates(True)
 
 def runCarliniL2Method():
     disable_eager_execution()
@@ -28,10 +27,8 @@ def runCarliniL2Method():
     attacker = CarliniL2Method(classifier=classifier, confidence=2, targeted=True)
     y = to_categorical([407],1000) #traget class = ambulance
 
-
-    print('\n====== RUN with CarliniL2Method======')
+    print('\n>>>>> GENERATING ADVERSARIAL_IMAGE WITH CarliniL2Method')
     adversarial_image = attacker.generate(img, y=y)
-
     print('\n>>>>> NO DEFENSE')
     prediction = classifier.predict(adversarial_image)
     result = decode_predictions(prediction, top=5)

@@ -20,9 +20,16 @@ $ python defendFGM,PGDAttackWith3ways.py #AI 모델에 FGM, PGD 공격 및 3가�
 ```
 
 ## Results
-| | NoAttack | FastGradientMethod | ProjectedGradientDescent |
-|--------|--------|--------|--------|
-| Results | <img width="230" alt="스크린샷 2021-10-24 오후 9 38 15" src="https://user-images.githubusercontent.com/48276633/138594545-688b09a0-0d96-4186-9fbd-6fa86f3a960c.png"> | <img width="280" alt="스크린샷 2021-10-24 오후 9 38 33" src="https://user-images.githubusercontent.com/48276633/138594578-98d0d09b-3334-4a60-b820-16a4f8f9cef2.png"> |<img width="280" alt="스크린샷 2021-10-24 오후 9 38 55" src="https://user-images.githubusercontent.com/48276633/138594587-78c02368-c4e3-4e7f-a5de-9849b181c150.png">
+|| NoAttack | DefendWith3ways |
+|--------|--------|--------|
+| RESULT | <img width="230" alt="스크린샷 2021-10-24 오후 9 38 15" src="https://user-images.githubusercontent.com/48276633/138594545-688b09a0-0d96-4186-9fbd-6fa86f3a960c.png"> | <img width="450" alt="DefendWith3ways" src="https://user-images.githubusercontent.com/48276633/139355998-e9eb5c72-55a5-41b5-b196-cc4a21be625c.png">|
+
+|| FastGradientMethod | ProjectedGradientDescent |
+|--------|--------|--------|
+| RESULT | <img width="310" alt="FastGradientMethod png" src="https://user-images.githubusercontent.com/48276633/139356695-714c112d-19dd-4519-8ef7-623d2fdcc795.png"> | <img width="370" alt="ProjectedGradientDescent" src="https://user-images.githubusercontent.com/48276633/139356697-fc3052e0-cfe9-4a42-a679-f6f9815a304b.png">|
+
+
+
 
 
 <hr>

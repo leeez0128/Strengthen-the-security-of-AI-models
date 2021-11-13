@@ -34,9 +34,10 @@ $ python defendFGM,PGDAttackWith3ways.py #AI 모델에 FGM, PGD 공격 및 3가�
 # [Physical Adversarial Examples Against Deep Neural Networks](https://bair.berkeley.edu/blog/2017/12/30/yolo-attack/)
 Recent research has shown that DNNs are vulnerable to adversarial examples: Adding carefully crafted adversarial perturbations to the inputs can mislead the target DNN into mislabeling them during run time.
 ### - Digital Adversarial Examples
+Optimization based methods have also been proposed to create adversarial perturbations for targeted attacks. Specifically, these attacks formulate an objective function whose solution seeks to maximize the difference between the true labeling of an input, and the attacker’s desired target labeling, while minimizing how different the inputs are, for some definition of input similarity.
 
 ### - Physical Adversarial Examples
-
+Computer vision algorithms identify relevant objects in a scene and predict bounding boxes indicating objects’ position and kind. Compared with classifiers, detectors are more challenging to fool as they process the entire image and can use contextual information (e.g. the orientation and position of the target object in the scene) in their predictions.
 
 <hr>
 

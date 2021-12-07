@@ -19,6 +19,17 @@ $ python FastGradientMethod.py  # AI모델에 대해 Fast Gradient Method 공격
 $ python ProjectedGradientDescent # AI모델에 대해 Projected Gradient Descent 공격
 $ python defendFGM,PGDAttackWith3ways.py #AI 모델에 FGM, PGD 공격 및 3가지 방어기법 사용
 ```
+#### ⭐️AI모델에 대해 Projected Gradient Descent 공격
+1. targeted = True <br>
+2. attcker generate 시 y값으로 snail 혼동 추가 <br>
+3. stop 이미지는 snail로 오인하게 되는 공격 받음 <br>
+4. 방어 기법 종류 : guassian noise, spatial smoothing, feature squeezing <br>
+  - 방어 기법 1개씩 사용
+  - 방어 기법 2개씩 사용
+  - 방어 기법 3개 모두 사용
+```
+$ python YoloTest.py
+```
 
 ## Results
 || NoAttack | DefendWith3ways |

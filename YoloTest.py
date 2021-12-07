@@ -29,14 +29,15 @@ def runProjectedGradientDescent():
 
     prediction = classifier.predict(adversarial_image)
     result = decode_predictions(prediction, top=5)
-    print('====== RUN with NO ATTACK ======')
+    print('>>>>> RUN with NO ATTACK')
     for idx, value in enumerate(result[0]) :
         print(f'{idx+1}. {value[1]} with a {value[2]*100 : .5f}%')
 
-
     attacker = ProjectedGradientDescent(estimator=classifier, targeted=True, eps_step=1, eps=8, max_iter=3)
-    y = to_categorical([430],1000) #traget class = basketball
-    
+    y = to_categorical([113],1000) #target class = snail
+
+
+    # No Defense
     print('\n>>>>> GENERATING ADVERSARIAL_IMAGE WITH ProjectedGradientDescent')
     adversarial_image = attacker.generate(img, y=y)
     print('\n>>>>> NO DEFENSE')
@@ -70,6 +71,57 @@ def runProjectedGradientDescent():
     for idx, value in enumerate(result[0]) :
         print(f'{idx+1}. {value[1]} with a {value[2]*100 : .5f}%')
 
+
+    # defend with 2ways
+    print('\n>>>>> Defend Attack with Gaussian Noise, Spatial Smoothing')
+    # Gaussian Noise
+    filtered_adversarial_image, _ = GaussianAugmentation(sigma=9, augmentation=False)(adversarial_image)
+    # Spatial Smoothing
+    filtered_adversarial_image, _ = SpatialSmoothing(window_size = 7)(filtered_adversarial_image)
+    
+    prediction = classifier.predict(filtered_adversarial_image)
+    result = decode_predictions(prediction, top=5)
+    for idx, value in enumerate(result[0]) :
+        print(f'{idx+1}. {value[1]} with a {value[2]*100 : .5f}%')
+
+    
+    print('\n>>>>> Defend Attack with Gaussian Noise,  Feature Squeezing')
+    # Gaussian Noise
+    filtered_adversarial_image, _ = GaussianAugmentation(sigma=9, augmentation=False)(adversarial_image)
+    # Feature Squeezing
+    filtered_adversarial_image, _ = FeatureSqueezing(bit_depth=3, clip_values=(0, 255))(filtered_adversarial_image)
+    
+    prediction = classifier.predict(filtered_adversarial_image)
+    result = decode_predictions(prediction, top=5)
+    for idx, value in enumerate(result[0]) :
+        print(f'{idx+1}. {value[1]} with a {value[2]*100 : .5f}%')
+
+    
+    print('\n>>>>> Defend Attack with Spatial Smoothing, Feature Squeezing')
+    # Spatial Smoothing
+    filtered_adversarial_image, _ = SpatialSmoothing(window_size = 7)(filtered_adversarial_image)
+    # Feature Squeezing
+    filtered_adversarial_image, _ = FeatureSqueezing(bit_depth=3, clip_values=(0, 255))(filtered_adversarial_image)
+    
+    prediction = classifier.predict(filtered_adversarial_image)
+    result = decode_predictions(prediction, top=5)
+    for idx, value in enumerate(result[0]) :
+        print(f'{idx+1}. {value[1]} with a {value[2]*100 : .5f}%')
+
+
+    # defend with 3ways
+    print('\n>>>>> Defend Attack with Gaussian Noise, Spatial Smoothing, Feature Squeezing')
+    # Gaussian Noise
+    filtered_adversarial_image, _ = GaussianAugmentation(sigma=9, augmentation=False)(adversarial_image)
+    # Spatial Smoothing
+    filtered_adversarial_image, _ = SpatialSmoothing(window_size = 7)(filtered_adversarial_image)
+    # Feature Squeezing
+    filtered_adversarial_image, _ = FeatureSqueezing(bit_depth=3, clip_values=(0, 255))(filtered_adversarial_image)
+    
+    prediction = classifier.predict(filtered_adversarial_image)
+    result = decode_predictions(prediction, top=5)
+    for idx, value in enumerate(result[0]) :
+        print(f'{idx+1}. {value[1]} with a {value[2]*100 : .5f}%')
 
     
 if __name__ == '__main__':
